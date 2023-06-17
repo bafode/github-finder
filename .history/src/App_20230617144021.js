@@ -33,7 +33,7 @@ const App=()=> {
 
   //set Alert
    const showAlert=(msg, type)=>{
-    setAlert( { msg, type })
+    this.setAlert( { msg, type })
     
     setTimeout(()=>setAlert(null),5000)
   }
