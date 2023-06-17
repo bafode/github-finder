@@ -10,12 +10,12 @@ const Search = ({showClear,clearUsers,setAlert,searchUsers}) => {
         if (text === '') {
             setAlert('Please enter something', 'light')
         } else {
-            searchUsers(text)
+            searchUsers(this.state.text)
              setText('')
         }
     }
     const onChange = (e) => {
-        setText(e.target.value)
+        this.setState({[e.target.name]:e.target.value})
     }
  
     return (

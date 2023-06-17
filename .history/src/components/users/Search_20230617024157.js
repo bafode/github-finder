@@ -15,7 +15,7 @@ const Search = ({showClear,clearUsers,setAlert,searchUsers}) => {
         }
     }
     const onChange = (e) => {
-        setText(e.target.value)
+        this.setState({[e.target.name]:e.target.value})
     }
  
     return (

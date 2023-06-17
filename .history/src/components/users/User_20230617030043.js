@@ -11,6 +11,9 @@ const User=({user,loading,repos,getUser,getUserRepos,match})=> {
     useEffect(() => {
         getUser(login)
         getUserRepos(login)
+        console.log(repos)
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      console.log(login)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
     

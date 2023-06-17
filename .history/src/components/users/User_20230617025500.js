@@ -4,13 +4,16 @@ import PropTypes from 'prop-types'
 import Spinner from '../layout/Spinner'
 import Repos from '../repos/Repos';
 
-const User=({user,loading,repos,getUser,getUserRepos,match})=> {
+const User=({user,loading,repos,getUser,getUserRepos})=> {
     const { login } = useParams();
    
    
     useEffect(() => {
         getUser(login)
         getUserRepos(login)
+        console.log(repos)
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      console.log(login)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
     
@@ -96,7 +99,7 @@ const User=({user,loading,repos,getUser,getUserRepos,match})=> {
         <div className='badge badge-light'>Public Repos: {public_repos}</div>
         <div className='badge badge-dark'>Public Gists: {public_gists}</div>
       </div>
-      <Repos repos={repos} />
+      {/* <Repos repos={props.repos} /> */}
       
       </Fragment>
     )
