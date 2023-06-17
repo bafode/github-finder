@@ -1,4 +1,5 @@
-import React, { Fragment} from 'react';
+import React, { Fragment,useState } from 'react';
+import axios from 'axios';
 import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 import './App.css';
 import Navbar from './components/layout/Navbar'
@@ -8,23 +9,49 @@ import Alert from './components/layout/Alert'
 import About from './components/pages/About'
 import User from './components/users/User'
 import GithubState from './context/github/GithubState'
-import AlertState from './context/alert/AlertState'
 
 const App=()=> {
+  const [repos, setRepos] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [alert,setAlert]=useState([])
+  
+  
+
+
+
+
+
+  //set Alert
+   const showAlert=(msg, type)=>{
+    setAlert( { msg, type })
+    
+    setTimeout(()=>setAlert(null),5000)
+  }
+  
+
+
+    //get user Repos
+   const getUserRepos =async username => {
+      setLoading(true)
+      const res = await axios.get(`https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`)
+      setRepos(res.data)
+      setLoading(false)
+    }
 
   return (
     <GithubState>
-      <AlertState>
       <Router>
         <div className="App">
         <Navbar />
         <div className="container">
-          <Alert/>
+          <Alert alert={alert} />
             <Routes>
               <Route exact path='/' element={
                 <>
                   <Fragment>
-                  <Search/>
+                  <Search
+                     setAlert={showAlert}
+                   />
                    <Users/>
                 </Fragment>
                 </>
@@ -32,14 +59,13 @@ const App=()=> {
               <Route exact path='/about' element={<About />} />
               <Route exact path='/user/:login' element={
                 <>
-                  <User/>
+                  <User getUserRepos={getUserRepos} repos={repos}/>
                 </>
               } /> 
            </Routes>
         </div>
       </div>
       </Router>
-      </AlertState>
       </GithubState>    
     );
   }

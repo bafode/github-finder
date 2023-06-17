@@ -1,12 +1,10 @@
 import React, { useState,useContext } from 'react'
-import AlertContext from '../../context/alert/alertContext'
 import GithubContext from '../../context/github/githubContext'
-const Search = () => {
+const Search = ({setAlert}) => {
     const [text,setText]=useState("")
     const githubContext=useContext(GithubContext)
-    const { searchUsers, clearUsers, users } = githubContext
-    const alertContext=useContext(AlertContext)
-    const{setAlert}=alertContext
+    const {searchUsers,clearUsers,users}=githubContext
+
     const onSubmit=(e)=> {
         e.preventDefault();
         if (text === '') {
