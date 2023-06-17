@@ -8,7 +8,6 @@ import User from './components/users/User'
 import GithubState from './context/github/GithubState'
 import AlertState from './context/alert/AlertState'
 import Home from './components/pages/Home'
-import NotFound from './components/pages/NotFound'
 
 const App=()=> {
 
@@ -28,7 +27,6 @@ const App=()=> {
                   <User/>
                 </>
               } /> 
-              <Route path='*' element={<NotFound/>} />     
            </Routes>
         </div>
       </div>

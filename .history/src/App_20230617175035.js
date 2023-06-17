@@ -28,7 +28,7 @@ const App=()=> {
                   <User/>
                 </>
               } /> 
-              <Route path='*' element={<NotFound/>} />     
+              <Route element={<NotFound/>} />     
            </Routes>
         </div>
       </div>
